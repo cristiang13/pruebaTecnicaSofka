@@ -20,6 +20,6 @@ python manage.py migrate
 python manage.py runserver
 
 
-entidades o tablas 
+Tablas de la base de datos naves_espaciones  
 ![image](https://user-images.githubusercontent.com/13666681/218152933-2e199840-ab7a-4f2b-b45e-0dc0877cb3d2.png)
 
