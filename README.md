@@ -18,3 +18,6 @@ python manage.py migrate
 
 * por ultimo se ejecuta el proyecto
 python manage.py runserver
+
+entidades o tablas 
+![image](https://user-images.githubusercontent.com/13666681/218152670-eddcbea0-4327-457f-90d1-ceb4f189a7c3.png)
