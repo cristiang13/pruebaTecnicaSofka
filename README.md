@@ -1,7 +1,7 @@
 # pruebaTecnicaSofka
 prueba tecnica 
 
-para ejecutar el proyecto se crea un entorno virtual pthon 
+para ejecutar el proyecto se crea un entorno virtual pthon \n
 - python -m venv nave_espaciales-env
 despues activar el entorno virtual 
 luego en la raiz del proyecto se instala los paquetes, dirigirse donde esta el archivo requeriments.txt
