@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row justify-content-center text-center" style="padding-top: 5%">
+    <div class="col-lg-7 col-md-10 col-12">
+        <div>
+            <h1 class="fs-180 fw-bold"> <i class="fa fa-gear fa-spin"></i></h1>
+            <h1>Lista de naves</h1><br>
+            <br>
+            <h4 class="d-flex align-items-center justify-content-center">Selecciona una categoria de nave</h4>
+            <form class="row g-3" action="{% url 'get_naves' %}" method="get">
+                <div class="input-group">
+                    <select id="categoria" name="categoria"class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                        <option value="1" {% if categoria == '1' %}selected{% endif %}>Nave no tripulada</option>
+                        <option value="2"{% if categoria == '2' %}selected{% endif %}>Nave tripulada</option>
+                        <option value="3" {% if categoria == '3' %}selected{% endif %} >Nave lanzadera</option>
+                    </select>
+                    <button  type="submit" class="btn btn-outline-secondary">Listar</button>
+                 </div>
+            <form>
+            
+            
+            
+                <table id="example" class="table uk-table-striped" style="width:100%">
+                    {% if categoria %}
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                    method="GET">
+                        <div class="input-group">
+                            <input type="hidden"   name="categoria_search" value="{{categoria}}">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar por nombre o tipo de propulsion" name="buscar" value="{{request.POST.buscar}}">
+                            <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">
+                                buscar
+                            </button>
+                            </div>
+                        </div>
+                    </form>
+                    {% endif %}                
+                    <thead>
+                        <tr role="row" >
+                            {% for column in name %}
+                                <th class="text-right"> {{column}} </th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for nave in list_naves %}
+                            <tr>
+                                <td class="no-wrap text-right" style="color:#0D2A5E"><strong>{{nave.id }}{{categoria}}</strong></td>
+
+                                <td class="no-wrap text-right" style="color:#0D2A5E"><strong>{{nave.nombre}}</strong></td>
+                            
+                                <td class="no-wrap text-right" style="color:#0D2A5E"><strong>{{nave.tipo_propulsion}}</strong></td>
+                            
+                                <td class="no-wrap text-right" style="color:#0D2A5E"><strong>{{nave.capacidad_transporte}}</strong></td>
+                            
+                                <td class="no-wrap text-right" style="color:#0D2A5E"><strong>{{nave.peso}}</strong></td>
+                            
+                                <td class="no-wrap text-right" style="color:#0D2A5E"><strong>{{nave.empuje}}</strong></td>
+                                {% if nave.orbita %}
+                                <td class="no-wrap text-right" style="color:#0D2A5E"><strong>{{nave.orbita}}</strong></td>
+                                {% endif %}
+                                {% if nave.altura %}
+                                <td class="no-wrap text-right" style="color:#0D2A5E"><strong>{{nave.altura}} {{categoria}}</strong></td>
+                                {% endif %}
+                            </tr> 
+
+                        {% endfor %} 
+
+                    </tbody>
+                </table>
+            <br>
+            <h3>Prueba Softka.</h3>
+            <h4 class="d-flex align-items-center justify-content-center">Analista de calidad.</h4>
+            <div class="col">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <a  href="/"class="btn btn-success" type="button">Home</a>
+                </div>
+              </div>
+        
+        </div>
+    </div>
+  </div>
+  
+
+{%endblock%}

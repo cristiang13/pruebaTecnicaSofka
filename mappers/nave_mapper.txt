@@ -1,0 +1,20 @@
+from vehiculo_espacial.models import Nave
+from dtos.nave_espacial_dto import NaveDto 
+
+class NaveMapper:
+  def naveDTO2Model(self, nave_dto: NaveDto):
+    nave= Nave()
+    nave.nombre= nave_dto.get_nombre()
+    nave.descripcion = nave_dto.get_descripcion()
+    nave.tipo = nave_dto.get_tipo()
+    nave.caracteristicas = nave_dto.get_caracteristicas()
+    return nave
+
+  def model2naveDTO(self, nave: Nave):
+    nave_dto= NaveDto()
+    nave_dto.set_nombre= nave.nombre
+    nave_dto.set_descripcion= nave.descripcion
+    nave_dto.set_caracteristicas=nave.caracteristicas
+    nave_dto.set_tipo = nave.tipo
+    return nave_dto
+  

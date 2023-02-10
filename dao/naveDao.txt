@@ -1,0 +1,29 @@
+from vehiculo_espacial.models import VehiculoEspacial
+from dtos.nave_espacial_dto import NaveDto
+from mappers.nave_mapper import NaveMapper
+
+class NaveDao:
+    def get_nave(self, nave_id):
+        naveMapper= NaveMapper()
+        nave = VehiculoEspacial.objects.get(id=nave_id)
+        nave_dto = naveMapper.model2naveDTO(nave)
+        return nave_dto
+    
+    def get_all_naves(self):
+        naves = VehiculoEspacial.objects.all()
+        naves_dto = [NaveDto(n.nombre, n.tipo, n.descripcion) for n in naves]
+        return naves_dto
+    
+    def add_nave(self, nave_dto:NaveDto):
+        naveMapper = NaveMapper.naveDTO2Model(nave_dto)
+        nave = VehiculoEspacial(naveMapper)
+        # nave = Nave(nombre=nave_dto.get_nombre(), tipo=nave_dto.get_tipo(), descripcion=nave_dto.get_descripcion())
+        nave.save()
+        return nave.id
+    
+    def update_nave(self, nave_dto:NaveDto):
+        nave = VehiculoEspacial.objects.get(id=nave_dto.get_id())
+        nave.nombre = nave_dto.get_nombre()
+        nave.tipo = nave_dto.get_tipo()
+        nave.descripcion = nave_dto.get_descripcion()
+        nave.save()
